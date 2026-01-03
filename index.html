@@ -260,6 +260,37 @@
             object-fit: cover;
         }
 
+        /* 참석 여부 */
+        .rsvp-button {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 20px auto;
+            padding: 18px;
+            background: #8b4513;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .rsvp-button:hover {
+            background: #6b3410;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        .rsvp-info {
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: 10px;
+        }
+
         /* 지도 */
         #map {
             width: 100%;
@@ -318,6 +349,204 @@
             font-size: 40px;
             cursor: pointer;
         }
+
+        /* 참석 여부 팝업 */
+        .rsvp-popup {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .rsvp-popup.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rsvp-popup-content {
+            background: #fff;
+            border-radius: 15px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .rsvp-popup-header {
+            background: linear-gradient(135deg, #8b4513 0%, #d2691e 100%);
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+        }
+
+        .rsvp-popup-header h3 {
+            color: #fff;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .rsvp-popup-header p {
+            color: #ffe4b5;
+            font-size: 14px;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #fff;
+            font-size: 30px;
+            cursor: pointer;
+            line-height: 1;
+            background: rgba(255,255,255,0.2);
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rsvp-popup-body {
+            padding: 30px 20px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 15px;
+            color: #8b4513;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="tel"] {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e8d5c4;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Nanum Myeongjo', serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #d2691e;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+        }
+
+        .radio-label {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            border: 2px solid #e8d5c4;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: normal;
+        }
+
+        .radio-label:hover {
+            border-color: #d2691e;
+            background: #faf6f0;
+        }
+
+        .radio-label input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .radio-label.selected {
+            border-color: #8b4513;
+            background: #faf6f0;
+            font-weight: bold;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 16px;
+            background: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-submit:hover {
+            background: #6b3410;
+            transform: translateY(-2px);
+        }
+
+        .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        .form-notice {
+            background: #fff3cd;
+            border-left: 4px solid #d2691e;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #856404;
+        }
+
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 10;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #8b4513;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -326,7 +555,7 @@
         <!-- 헤더 -->
         <div class="header">
             <h1>배준혁 & 최윤정</h1>
-            <p>2026년 5월 30일 토요일 오후 3시</p>
+            <p>2026년 5월 30일 금요일 오후 3시</p>
         </div>
 
         <!-- 초대글 -->
@@ -355,11 +584,11 @@
             <div class="couple-info">
                 <div class="person">
                     <h3>배준혁</h3>
-                    <p class="parents">배영옥 · 장미란의 장남</p>
+                    <p class="parents">배영옥의 장남</p>
                 </div>
                 <div class="person">
                     <h3>최윤정</h3>
-                    <p class="parents">최주호 · 전진향의 장녀</p>
+                    <p class="parents">최주호의 장녀</p>
                 </div>
             </div>
         </section>
@@ -368,9 +597,9 @@
         <section>
             <h2>예식 안내</h2>
             <div class="datetime">
-                <div class="date">2026년 5월 30일 토요일</div>
+                <div class="date">2026년 5월 30일 금요일</div>
                 <div class="time">오후 3시</div>
-                <div class="location">노보텔앰배서더 강남 호텔 그랜드볼룸</div>
+                <div class="location">노보텔 앰배서더 강남</div>
             </div>
         </section>
 
@@ -380,15 +609,15 @@
             <div class="contact-group">
                 <h3>신랑측</h3>
                 <div class="contact-buttons">
-                    <a href="tel:010-6700-6018" class="btn">신랑에게 전화</a>
-                    <a href="sms:010-6700-6018" class="btn">문자 보내기</a>
+                    <a href="tel:010-1234-5678" class="btn">신랑에게 전화</a>
+                    <a href="sms:010-1234-5678" class="btn">문자 보내기</a>
                 </div>
             </div>
             <div class="contact-group">
                 <h3>신부측</h3>
                 <div class="contact-buttons">
-                    <a href="tel:010-8698-5961" class="btn">신부에게 전화</a>
-                    <a href="sms:010-8698-5961" class="btn">문자 보내기</a>
+                    <a href="tel:010-9876-5432" class="btn">신부에게 전화</a>
+                    <a href="sms:010-9876-5432" class="btn">문자 보내기</a>
                 </div>
             </div>
         </section>
@@ -399,7 +628,7 @@
             <div class="account">
                 <h4>신랑측</h4>
                 <div class="account-info">
-                    <span>신한은행 111-111-411111 배준혁</span>
+                    <span>신한은행 110-123-456789 배준혁</span>
                     <button class="copy-btn" onclick="copyAccount('110-123-456789')">복사</button>
                 </div>
                 <div class="account-info">
@@ -445,14 +674,23 @@
             </div>
         </section>
 
+        <!-- 참석 여부 -->
+        <section>
+            <h2>참석 여부</h2>
+            <button onclick="openRSVPPopup()" class="rsvp-button">
+                📝 참석 여부 응답하기
+            </button>
+            <p class="rsvp-info">버튼을 눌러 참석 여부를 알려주세요</p>
+        </section>
+
         <!-- 오시는 길 -->
         <section>
             <h2>오시는 길</h2>
             <div id="map"></div>
             <div class="map-info">
-                <h4>쩌꾸쩌꾸쩌꾸</h4>
-                <p>📍 서울특별시 중구 소공로 119</p>
-                <p>🚇 지하철 1호선 시청역 7번 출구 도보 3분</p>
+                <h4>노보텔 앰배서더 강남</h4>
+                <p>📍 서울특별시 강남구 언주로 521</p>
+                <p>🚇 지하철 2호선 선릉역 1번 출구 도보 7분</p>
                 <p>🚗 건물 내 주차 가능 (3시간 무료)</p>
             </div>
         </section>
@@ -462,6 +700,51 @@
     <div class="modal" id="imageModal" onclick="closeModal()">
         <span class="close-modal">&times;</span>
         <img id="modalImage" src="" alt="확대 이미지">
+    </div>
+
+    <!-- 참석 여부 팝업 -->
+    <div class="rsvp-popup" id="rsvpPopup">
+        <div class="rsvp-popup-content" onclick="event.stopPropagation()">
+            <div class="rsvp-popup-header">
+                <span class="close-popup" onclick="closeRSVPPopup()">&times;</span>
+                <h3>참석 여부</h3>
+                <p>소중한 시간 내어주셔서 감사합니다</p>
+            </div>
+            <div class="rsvp-popup-body">
+                <div class="form-notice">
+                    ℹ️ 참석 여부를 알려주시면 예식 준비에 큰 도움이 됩니다.
+                </div>
+                <form id="rsvpForm">
+                    <div class="form-group">
+                        <label>성함 *</label>
+                        <input type="text" id="guestName" required placeholder="홍길동">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>참석 여부 *</label>
+                        <div class="radio-group">
+                            <label class="radio-label" onclick="selectRadio(this, 'attendance')">
+                                <input type="radio" name="attendance" value="참석" required> 참석
+                            </label>
+                            <label class="radio-label" onclick="selectRadio(this, 'attendance')">
+                                <input type="radio" name="attendance" value="불참" required> 불참
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>휴대전화 뒷자리 4개 *</label>
+                        <input type="tel" id="phoneLastFour" required placeholder="1234" maxlength="4" pattern="[0-9]{4}">
+                    </div>
+                    
+                    <button type="submit" class="btn-submit">응답 제출하기</button>
+                </form>
+            </div>
+            <div class="loading-overlay" id="loadingOverlay">
+                <div class="spinner"></div>
+                <p style="margin-top:15px; color:#8b4513; font-weight:bold;">제출 중...</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -487,24 +770,105 @@
             modal.classList.remove('active');
         }
 
+        // 참석 여부 팝업
+        function openRSVPPopup() {
+            document.getElementById('rsvpPopup').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeRSVPPopup() {
+            document.getElementById('rsvpPopup').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            document.getElementById('rsvpForm').reset();
+            document.querySelectorAll('.radio-label').forEach(label => {
+                label.classList.remove('selected');
+            });
+        }
+
+        // 라디오 버튼 선택 스타일
+        function selectRadio(label, groupName) {
+            const group = document.querySelectorAll(`input[name="${groupName}"]`);
+            group.forEach(radio => {
+                radio.parentElement.classList.remove('selected');
+            });
+            label.classList.add('selected');
+        }
+
+        // 팝업 외부 클릭시 닫기
+        document.getElementById('rsvpPopup').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeRSVPPopup();
+            }
+        });
+
+        // Google Forms 제출
+        // 1. Google Forms에서 "미리 채워진 링크 가져오기"로 각 필드의 entry ID를 확인해야 합니다
+        // 2. 아래 FORM_URL과 entry 번호들을 실제 값으로 교체하세요
+        const GOOGLE_FORM_URL = 'https://docs.google.com/forms/u/0/d/e/YOUR_FORM_ID/formResponse';
+        
+        document.getElementById('rsvpForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('guestName').value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked');
+            const phone = document.getElementById('phoneLastFour').value.trim();
+            
+            if (!name || !attendance || !phone) {
+                alert('모든 필수 항목을 입력해주세요.');
+                return;
+            }
+
+            if (phone.length !== 4 || !/^\d{4}$/.test(phone)) {
+                alert('휴대전화 뒷자리 4자리를 정확히 입력해주세요.');
+                return;
+            }
+            
+            // 로딩 표시
+            document.getElementById('loadingOverlay').classList.add('active');
+            
+            // Google Forms 데이터 구성
+            const formData = new FormData();
+            formData.append('entry.000000001', name);  // 성함 - 실제 entry ID로 교체 필요
+            formData.append('entry.000000002', attendance.value);  // 참석여부 - 실제 entry ID로 교체 필요
+            formData.append('entry.000000003', phone);  // 전화번호 - 실제 entry ID로 교체 필요
+            
+            try {
+                // CORS 우회를 위해 no-cors 모드 사용
+                await fetch(GOOGLE_FORM_URL, {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors'
+                });
+                
+                // 성공 메시지
+                alert('✅ 참석 여부가 등록되었습니다.\n소중한 시간 내어주셔서 감사합니다!');
+                closeRSVPPopup();
+                
+            } catch (error) {
+                console.error('제출 오류:', error);
+                alert('❌ 제출 중 오류가 발생했습니다.\n잠시 후 다시 시도해주세요.');
+            } finally {
+                document.getElementById('loadingOverlay').classList.remove('active');
+            }
+        });
+
         // 네이버 지도 API
         function initMap() {
-            // 실제 사용 시 본인의 네이버 지도 API 키가 필요합니다
             const mapOptions = {
-                center: new naver.maps.LatLng(37.5644, 126.9765), // 더 플라자 호텔 좌표
+                center: new naver.maps.LatLng(37.5048, 127.0504), // 노보텔 앰배서더 강남 좌표
                 zoom: 17
             };
 
             const map = new naver.maps.Map('map', mapOptions);
 
             const marker = new naver.maps.Marker({
-                position: new naver.maps.LatLng(37.5644, 126.9765),
+                position: new naver.maps.LatLng(37.5048, 127.0504),
                 map: map,
-                title: '더 플라자 호텔'
+                title: '노보텔 앰배서더 강남'
             });
 
             const infoWindow = new naver.maps.InfoWindow({
-                content: '<div style="padding:10px;"><b>더 플라자 호텔</b><br>그랜드볼룸</div>'
+                content: '<div style="padding:10px;"><b>노보텔 앰배서더 강남</b></div>'
             });
 
             naver.maps.Event.addListener(marker, 'click', function() {
@@ -518,7 +882,6 @@
 
         // 페이지 로드 시 지도 초기화
         window.onload = function() {
-            // 네이버 지도 API 스크립트가 로드된 후 실행
             if (typeof naver !== 'undefined') {
                 initMap();
             }
